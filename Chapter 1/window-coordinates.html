@@ -12,6 +12,7 @@
 			/* overflow: hidden; // 스크롤이 안 되게 하고 싶을 때 */
 		}
 
+		/* 밝은 갈색 사각형 */
 		div {
 			width: 250px;
 			height: 250px;
@@ -20,12 +21,15 @@
 			border-radius: 4px;
 		}
 
+		/* 짙은 갈색 사각형 */
 		.special {
 			background-color: lightsalmon;
 		}
 
+		/* 상단 우측 버튼들 감싸는 요소 */
 		aside {
 			position: fixed;
+			/* 스크롤 해도 고정 */
 			top: 20px;
 			right: 15px;
 		}
@@ -49,40 +53,40 @@
 		<button class="scroll-to">Scroll to 100px(y)</button>
 		<button class="scroll-into">Scroll into special</button>
 	</aside>
+
 	<script>
-		const special = document.querySelector('.special')
+		const special = document.querySelector('.special');
 
 		function updateCoordinates(e) {
-			// special 박스 자체의 정보(x, y, width, height, top/bottom/left/right)는
-			// getBoundingClientRect() 함수로 얻음
+			// Element.getBoundingClientRect(): element의 좌표정보
+			// (x, y, width/height, top/bottom/left/right)
 			console.log(special.getBoundingClientRect());
+
 			// client와 page는 special 박스의 좌상단 좌표가 아니라 
-			// special 박스 내에서 '클릭한 곳'의 좌표를 의미
-			// (client는 스크롤한 후 viewport 범위에서의 위치, page는 스크롤하기 전 브라우저 최상단에서의 위치)
+			// special 박스 내에서 '클릭한 곳(e)'의 좌표를 의미
+			// client는 viewport에서의 위치(스크롤 이후), page는 브라우저 body 최상단에서의 위치(스크롤 전)
 			console.log(`client: ${e.clientX}, ${e.clientY}`);
 			console.log(`page: ${e.pageX}, ${e.pageY}`);
 		}
-
 		special.addEventListener('click', updateCoordinates);
 
 		const scrollBy = document.querySelector('.scroll-by');
 		const scrollTo = document.querySelector('.scroll-to');
 		const scrollInto = document.querySelector('.scroll-into');
-
+		// 누를 때마다 window(브라우저 최상단)에서 밑으로 100px씩 이동
 		scrollBy.addEventListener('click', () => {
+			// 단순 x, y 좌표뿐만 아니라 객체 형태{ }도 넣을 수 있음
 			window.scrollBy({
 				top: 100,
 				left: 0,
 				behavior: 'smooth'
-			})
+			});
 		});
+		// 누르면 window(브라우저 최상단)에서 밑으로 100px 이동
 		scrollTo.addEventListener('click', () => {
-			window.scrollTo({
-				top: 100,
-				left: 0,
-				behavior: 'smooth'
-			})
+			window.scrollTo(0, 100);
 		});
+		// 누르면 special 박스로 바로 이동 (Element.scrollIntoView())
 		scrollInto.addEventListener('click', () => {
 			special.scrollIntoView();
 		})
