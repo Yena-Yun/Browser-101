@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Window Size</title>
+	<style>
+		.tag {
+			display: inline-block;
+			background-color: thistle;
+			padding: 16px;
+			margin-top: 16px;
+			font-size: 48px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="tag">Window Size, Coordinates</div>
+
+	<script>
+		const tag = document.querySelector('.tag');
+
+		// 함수로 모듈화
+		function updateTag() {
+			// tag에 innerHTML로 새로운 내용 넣으면 원래 있던 'Window Size' 텍스트 대체
+			tag.innerHTML = `
+			window.screen: ${window.screen.width}, ${window.screen.height} <br />
+			window.outer: ${window.outerWidth}, ${window.outerHeight} <br />
+			window.inner: ${window.innerWidth}, ${window.innerHeight} <br />
+			documentElement.clientWidth: ${document.documentElement.clientWidth},
+			${document.documentElement.clientHeight}
+			`;
+		}
+
+		// 브라우저 스크린 크기를 조절할 때마다 콜백함수 호출
+		window.addEventListener('resize', () => {
+			updateTag();
+			// Element.getBoundingClientRect(): Element의 x, y 좌표값, width와 height, top/right/bottom/left 얻어내기
+			// 주의: JS에서의 right과 bottom은 CSS에서와 방향이 반대
+			// (각각 왼쪽과 위에서 얼마나 떨어져 있느냐를 의미 -> JS는 무조건 제일 왼쪽 위, 좌상단이 기준)
+			console.log(tag.getBoundingClientRect());
+			//console.log(tag.getBoundingClientRect().x);
+		});
+		updateTag();
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Coordinates</title>
+	<style>
+		body {
+			background-color: #000;
+			/* overflow: hidden; // 스크롤이 안 되게 하고 싶을 때 */
+		}
+
+		div {
+			width: 250px;
+			height: 250px;
+			background-color: blanchedalmond;
+			margin: 4px;
+			border-radius: 4px;
+		}
+
+		.special {
+			background-color: lightsalmon;
+		}
+	</style>
+</head>
+
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div class="special"></div>
+	<div></div>
+	<div></div>
+
+	<script>
+		const special = document.querySelector('.special')
+
+		function updateCoordinates(e) {
+			// special 박스 자체의 정보(x, y, width, height, top/bottom/left/right)는
+			// getBoundingClientRect() 함수로 얻음
+			console.log(special.getBoundingClientRect());
+			// client와 page는 special 박스의 좌상단 좌표가 아니라 
+			// special 박스 내에서 '클릭한 곳'의 좌표를 의미
+			// (client는 스크롤한 후 viewport 범위에서의 위치, page는 스크롤하기 전 브라우저 최상단에서의 위치)
+			console.log(`client: ${e.clientX}, ${e.clientY}`);
+			console.log(`page: ${e.pageX}, ${e.pageY}`);
+		}
+
+		special.addEventListener('click', updateCoordinates);
+	</script>
+</body>
+
+</html>
