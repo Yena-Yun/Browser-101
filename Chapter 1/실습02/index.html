@@ -6,10 +6,56 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+	<style>
+		body {
+			background-color: #000;
+			/* 텍스트 아닌 요소들도 가운데정렬 */
+			text-align: center;
+		}
+
+		button {
+			outline: none;
+			background-color: tomato;
+			color: #fff;
+			font-size: 32px;
+			margin: 16px 0;
+			cursor: pointer;
+		}
+
+		img {
+			display: block;
+			width: 150px;
+			/* text-align으로 정렬되지 않는 경우 - 오른쪽에 마진이 차 있음 -> margin: auto로 마진을 좌우로 균등하게 (가운데정렬) */
+			margin: auto;
+			margin-bottom: 8px;
+		}
+	</style>
 </head>
 
 <body>
+	<button>Find a rabbit 🐇</button>
+	<img src="img/carrot.png" alt="carrot">
+	<img src="img/carrot.png" alt="carrot">
+	<img src="img/carrot.png" alt="carrot">
+	<img src="img/carrot.png" alt="carrot">
+	<img id="rabbit" src="img/rabbit.png" alt="rabbit">
+	<img src="img/carrot.png" alt="carrot">
+	<img src="img/carrot.png" alt="carrot">
+	<img src="img/carrot.png" alt="carrot">
+	<img src="img/carrot.png" alt="carrot">
 
+	<script>
+		const button = document.querySelector('button');
+		const rabbit = document.querySelector('#rabbit');
+
+		// 버튼을 클릭하면 콜백함수 호출
+		button.addEventListener('click', (e) => {
+			rabbit.scrollIntoView({
+				behavior: 'smooth',
+				block: "center",
+			});
+		});
+	</script>
 </body>
 
 </html>

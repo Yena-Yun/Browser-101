@@ -88,7 +88,9 @@
 		});
 		// 누르면 special 박스로 바로 이동 (Element.scrollIntoView())
 		scrollInto.addEventListener('click', () => {
-			special.scrollIntoView();
+			special.scrollIntoView({
+				behavior: 'smooth'
+			});
 		})
 	</script>
 </body>
