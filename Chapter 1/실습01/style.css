@@ -3,6 +3,7 @@
 	}
 
 	.line {
+		/* 두고 싶은 데 두려면 absolute (relative 필요없음) */
 		position: absolute;
 		background-color: #fff;
 	}
@@ -23,6 +24,8 @@
 		position: absolute;
 		top: 50%;
 		left: 50%;
+		/* top, left 50% 후엔 이미지의 좌상단 모서리가 정가운데에 위치 */
+		/* 자기 크기만큼 -50%씩 이동 */
 		transform: translate(-50%, -50%);
 	}
 
