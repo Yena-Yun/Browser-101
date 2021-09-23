@@ -2,13 +2,13 @@ let vertical = document.querySelector('.vertical');
 let horizontal = document.querySelector('.horizontal');
 let target = document.querySelector('.target');
 let tag = document.querySelector('.tag');
+
 let targetRect = target.getBoundingClientRect();
-let targetHalfWidth = targetRect.width / 2; // JS에서 계산할 때는 calc 필요없음 (CSS에서만 사용)
+let targetHalfWidth = targetRect.width / 2; // JS에서 계산할 때는 css의 calc 필요없이 바로 계산
 let targetHalfHeight = targetRect.height / 2;
 
 document.addEventListener('mousemove', coordinates);
 
-// 여기서 e는 mousemove
 function coordinates(e) {
   // clientX,Y: 화면상에서의 마우스 위치
   let x = e.clientX;

@@ -48,7 +48,7 @@
 		const button = document.querySelector('button');
 		const rabbit = document.querySelector('#rabbit');
 
-		// 버튼을 클릭하면 콜백함수 호출
+		// 버튼을 클릭하면 콜백함수로 rabbit에 scrollIntoView 호출
 		button.addEventListener('click', (e) => {
 			rabbit.scrollIntoView({
 				behavior: 'smooth',
