@@ -52,17 +52,23 @@
 	<span>Hello World!</span>
 
 	<script>
+		// DOM으로 section 가져오기
 		const section = document.querySelector('section');
-		// createElement: \태그 생성
+
+		// createElement: 태그 생성
 		const h2 = document.createElement('h2');
-		// setAttribute: 속성 추가 (key, value)
+
+		// setAttribute: 생성된 태그에 속성 추가 (key, value)
 		h2.setAttribute('class', 'title');
+
 		// textContent: 태그 사이에 들어갈 텍스트 지정
 		h2.textContent = 'This is a title'; // <h2 class="title">This is a title</h2>
-		// parent.appendChild(child): 부모 태그 밑에 자식 태그 추가(무조건 맨 뒤에)
+
+		// parent.appendChild(child): 부모태그 아래 '맨뒤'에 자식태그 추가
 		section.appendChild(h2);
-		// insertBefore: 부모 태그 밑에 자식 태그 추가(위치 지정해서 추가 가능)
-		// parent.insertBefore(새 노드, 새 노드 다음에 올 노드)
+
+		// insertBefore: 부모태그 아래 '사이'에 자식태그 추가 (위치 지정 가능)
+		// parent.insertBefore(새 노드, 새 노드 뒤에 올 노드)
 		const h3 = document.querySelector('h3');
 		section.insertBefore(h2, h3);
 	</script>
