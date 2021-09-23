@@ -18,19 +18,20 @@
 </head>
 
 <body>
-	<div class="tag">Window Size, Coordinates</div>
+	<div class="tag">window size, coordinates</div>
 
 	<script>
 		const tag = document.querySelector('.tag');
 
 		// 함수로 모듈화
 		function updateTag() {
-			// tag에 innerHTML로 새로운 내용 넣으면 원래 있던 'Window Size' 텍스트 대체
+			// tag에 innerHTML로 새로운 내용 넣으면 원래 태그 사이에 있던 텍스트 내용 대체
+			// screen: 모니터 크기, outer: 브라우저 바깥쪽 크기, inner: 브라우저 안쪽 크기(body), client: 뷰포트
 			tag.innerHTML = `
 			window.screen: ${window.screen.width}, ${window.screen.height} <br />
 			window.outer: ${window.outerWidth}, ${window.outerHeight} <br />
 			window.inner: ${window.innerWidth}, ${window.innerHeight} <br />
-			documentElement.clientWidth: ${document.documentElement.clientWidth},
+			documentElement.client: ${document.documentElement.clientWidth},
 			${document.documentElement.clientHeight}
 			`;
 		}
@@ -38,13 +39,11 @@
 		// 브라우저 스크린 크기를 조절할 때마다 콜백함수 호출
 		window.addEventListener('resize', () => {
 			updateTag();
-			// Element.getBoundingClientRect(): Element의 x, y 좌표값, width와 height, top/right/bottom/left 얻어내기
-			// 주의: JS에서의 right과 bottom은 CSS에서와 방향이 반대
-			// (각각 왼쪽과 위에서 얼마나 떨어져 있느냐를 의미 -> JS는 무조건 제일 왼쪽 위, 좌상단이 기준)
+			// Element.getBoundingClientRect(): Element의 x/y(좌표값), width/height(크기), top/right/bottom/left(위치) 제공
+			// 주의: ** JS에서의 right과 bottom은 CSS에서와 방향이 반대
+			// 	=> 각각 left와 top에서 얼마나 떨어져 있느냐 - 무조건 제일 왼쪽 위(좌상단)이 기준
 			console.log(tag.getBoundingClientRect());
-			//console.log(tag.getBoundingClientRect().x);
 		});
-		updateTag();
 	</script>
 </body>
 

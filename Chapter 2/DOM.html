@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>DOM</title>
+	<style>
+		body {
+			background-color: #000;
+			text-align: center;
+			margin: auto;
+			font-family: 'Bonheur Royale', cursive;
+			box-sizing: border-box;
+		}
+
+		section {
+			background-color: rgb(67, 37, 173);
+			width: 500px;
+			height: 350px;
+			border-radius: 16px;
+			text-align: center;
+			margin: auto;
+			margin-top: 50px;
+			margin-bottom: 30px;
+			padding-top: 20px;
+		}
+
+		img {
+			display: block;
+			margin: auto;
+			width: 130px;
+			border-radius: 50%;
+		}
+
+		h1,
+		h3,
+		span {
+			color: #fff;
+		}
+	</style>
+</head>
+
+<body>
+	<section>
+		<img src="img/avatar.jpg" alt="avatar" />
+		<h1 id="brand">Cheryl</h1>
+		<h3>Being the cherry on top!</h3>
+	</section>
+	<span>Hello World!</span>
+
+	<script>
+		const section = document.querySelector('section');
+		// createElement: h2 태그 생성
+		const h2 = document.createElement('h2');
+		// setAttribute: 속성으로 'title' 클래스 추가
+		// (속성: id, img의 alt 등 / key, value 형태로 추가)
+		h2.setAttribute('class', 'title');
+		// textContent: 태그 사이에 들어갈 텍스트 내용(innerHTML) 설정
+		h2.textContent = 'This is a title'; // <h2 class="title">This is a title</h2>
+		// appendChild: 무조건 맨 뒤에 추가
+		section.appendChild(h2);
+		// insertBefore: 맨 뒤가 아닌 사이에 추가 가능
+		// parentNode.insertBefore(추가할 노드, referenceNode)
+		// reference node 앞에 추가
+		const h3 = document.querySelector('h3');
+		section.insertBefore(h2, h3);
+	</script>
+</body>
+
+</html>
