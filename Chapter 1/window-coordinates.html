@@ -9,7 +9,7 @@
 	<style>
 		body {
 			background-color: #000;
-			/* overflow: hidden; // 스크롤이 안 되게 하고 싶을 때 */
+			/* overflow: hidden; // 스크롤 안 되게 하고 싶을 때 */
 		}
 
 		/* 밝은 갈색 사각형 */
@@ -26,10 +26,10 @@
 			background-color: lightsalmon;
 		}
 
-		/* 상단 우측 버튼들 감싸는 요소 */
+		/* 상단 우측 버튼 wrapping 영역 */
 		aside {
+			/* 스크롤해도 고정 */
 			position: fixed;
-			/* 스크롤 해도 고정 */
 			top: 20px;
 			right: 15px;
 		}
@@ -49,49 +49,55 @@
 	<div></div>
 
 	<aside>
+		<!-- y축으로 100px씩 이동 -->
 		<button class="scroll-by">Scroll by 100px(y)</button>
+		<!-- y축으로 100px 이동 -->
 		<button class="scroll-to">Scroll to 100px(y)</button>
+		<!-- special 박스로 이동 -->
 		<button class="scroll-into">Scroll into special</button>
 	</aside>
 
 	<script>
+		// special 박스 클릭 시 getBoundingClientRect 정보와 클릭한 곳의 client, page 좌표 받아오기
 		const special = document.querySelector('.special');
 
 		function updateCoordinates(e) {
-			// Element.getBoundingClientRect(): element의 좌표정보
-			// (x, y, width/height, top/bottom/left/right)
 			console.log(special.getBoundingClientRect());
-
-			// client와 page는 special 박스의 좌상단 좌표가 아니라 
-			// special 박스 내에서 '클릭한 곳(e)'의 좌표를 의미
-			// client는 viewport에서의 위치(스크롤 이후), page는 브라우저 body 최상단에서의 위치(스크롤 전)
+			// client와 page는 special 박스의 '좌상단 좌표'가 아닌, special 박스 내에서 '클릭(e)한 곳의 좌표'를 의미
+			// client는 viewport에서의 위치(상대적), page는 브라우저 body 최상단에서의 위치(절대적)
 			console.log(`client: ${e.clientX}, ${e.clientY}`);
 			console.log(`page: ${e.pageX}, ${e.pageY}`);
 		}
+
 		special.addEventListener('click', updateCoordinates);
 
+		// 우상단의 각 버튼 클릭 시 이동 애니메이션 효과
 		const scrollBy = document.querySelector('.scroll-by');
 		const scrollTo = document.querySelector('.scroll-to');
 		const scrollInto = document.querySelector('.scroll-into');
-		// 누를 때마다 window(브라우저 최상단)에서 밑으로 100px씩 이동
+
+		// 클릭할 때마다 y축으로 100px씩 이동
 		scrollBy.addEventListener('click', () => {
-			// 단순 x, y 좌표뿐만 아니라 객체 형태{ }도 넣을 수 있음
+			// (단순 x,y 좌표뿐만 아니라 객체 형태{ }도 가능 - MDN 참고)
 			window.scrollBy({
 				top: 100,
 				left: 0,
 				behavior: 'smooth'
 			});
 		});
-		// 누르면 window(브라우저 최상단)에서 밑으로 100px 이동
+
+		// 클릭하면 y축으로 100px 이동
 		scrollTo.addEventListener('click', () => {
 			window.scrollTo(0, 100);
 		});
-		// 누르면 special 박스로 바로 이동 (Element.scrollIntoView())
+
+		// 클릭하면 special 박스로 이동 (scrollIntoView)
 		scrollInto.addEventListener('click', () => {
 			special.scrollIntoView({
+				// { behavior: 'smooth'} 옵션 넣으면 부드럽게 이동
 				behavior: 'smooth'
 			});
-		})
+		});
 	</script>
 </body>
 
