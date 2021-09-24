@@ -1,54 +1,61 @@
-const ul = document.querySelector('.ul');
-const input = document.querySelector('input');
-const addBtn = document.querySelector('.addBtn');
+const items = document.querySelector('.items'); // ul
+const itemList = document.querySelector('.items .item__row'); // li
+console.log(itemList);
 
-const addList = () => {
-  addBtn.addEventListener('click', (e) => {
-    const li = document.createElement('li');
-    const value = input.value;
+const input = document.querySelector('.footer__input');
+const addBtn = document.querySelector('.footer__button');
 
-    if (value) {
-      li.innerHTML = `
-			${value}
-			<button>
-				<i class="fas fa-trash"></i>
-			</button>
-		`;
+const divider = document.querySelector('.item__divider');
+const deleteBtn = document.querySelector('.item__delete');
 
-      const removeBtn = document.querySelector('li button');
-      removeBtn.addEventListener('click', deleteLi);
+const onAdd = () => {
+  const inputValue = input.value;
 
-      const deleteLi = () => {
-        const lists = document.querySelectorAll('li');
+  const li = document.createElement('li');
+  li.setAttribute('class', 'item__row');
 
-        const removedLi = (e) => {
-          const element = e.target.parentNode;
-          element.remove();
-        };
+  const item = document.createElement('div');
+  item.setAttribute('class', 'item');
 
-        for (let i = 0; i < lists.length; i++) {
-          lists[i].addEventListener('click', removedLi);
-        }
-      };
-    }
+  const itemName = document.createElement('span');
+  itemName.setAttribute('class', 'item__name');
+  console.log(itemName);
 
-    ul.appendChild(li);
+  itemName.textContent = inputValue;
+
+  console.log(deleteBtn);
+
+  item.append(itemName, deleteBtn);
+  li.appendChild(item);
+
+  if (inputValue) {
+    items.appendChild(li);
     input.value = '';
-  });
-  console.log(ul);
+
+    // const removeBtn = document.querySelector('li button');
+    // removeBtn.addEventListener('click', deleteLi);
+
+    // const deleteLi = () => {
+    //   const lists = document.querySelectorAll('li');
+
+    //   const removedLi = (e) => {
+    //     const element = e.target.parentNode;
+    //     element.remove();
+    //   };
+
+    //   for (let i = 0; i < lists.length; i++) {
+    //     lists[i].addEventListener('click', removedLi);
+    //   }
+    // };
+  }
 };
 
-addList();
+const enterKey = () => {
+  if (window.event.keyCode === 13) {
+    onAdd();
+  }
+};
 
-// {
-// 	li ? () => {
-// 		const deleteBtn = document.querySelector('li button');
-
-// 		deleteBtn.addEventListener('click', (e) => {
-// 			const lists = document.querySelectorAll('li');
-// 			for (let i = 0; i < lists.length; i++) {
-// 				lists[i].)
-// 			}
-// 		}
-// 	} : null
-// }
+addBtn.addEventListener('click', (e) => {
+  onAdd();
+});

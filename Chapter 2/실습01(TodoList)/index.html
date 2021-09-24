@@ -16,21 +16,31 @@
 </head>
 
 <body>
-	<div class="container">
-		<div class="header">Shopping List</div>
+	<section class="list">
+		<header class="header">Shopping List</header>
 
-		<ul class="ul">
-			<!-- js로 li 추가 -->
+		<ul class="items">
+			<!-- 삭제할 때 필요한 영역을 하나 더 따로 구분 -->
+			<li class="item__row">
+				<!-- 실제 텍스트와 삭제버튼이 올라가는 영역 -->
+				<div class="item">
+					<span class="item__name">우유</span>
+					<button class="item__delete">
+						<i class="fas fa-trash-alt"></i>
+					</button>
+				</div>
+				<!-- item 간 구분선 -->
+				<div class="item__divider"></div>
+			</li>
 		</ul>
 
-		<input type="text" />
-
-		<div class="footer">
-			<button class="addBtn">
+		<footer class="footer">
+			<input type="text" class="footer__input" onkeydown="enterKey()" />
+			<button class="footer__button">
 				<i class="fas fa-plus"></i>
 			</button>
-		</div>
-	</div>
+		</footer>
+	</section>
 
 </body>
 

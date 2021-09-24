@@ -1,17 +1,18 @@
+* {
+	box-sizing: border-box;
+}
+
 body {
 	font-family: 'Koh Santepheap',
 	cursive;
 	margin: 0;
 	padding: 0;
-	background: aliceblue;
+	background: #ced3df;
 	width: 100%;
 	margin-top: 70px;
-	display: flex;
-	justify-content: center;
 }
 
 ul, li {
-	margin: 0;
 	padding: 0;
 	list-style: none;
 }
@@ -28,76 +29,96 @@ button {
 	cursor: pointer;
 }
 
-.container {
+.list {
 	position: relative;
-	border-radius: 16px;
 	box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 	width: 350px;
-	height: 500px;
+	margin: auto;
+	background-color: #f1f0f7;
+	border-radius: 20px;
 }
 
 .header {
-	border-top-left-radius: 16px;
-	border-top-right-radius: 16px;
+	/* border-top-left-radius: 16px;
+	border-top-right-radius: 16px; */
+	/* border-radius 왼쪽위, 오른쪽위만 한번에 지정 */
+	border-radius: 20px 20px 0 0;
 	background-image: linear-gradient(130deg, #fbc2eb 0%, #a6c1ee 100%);
 	font-weight: 600;
 	font-size: 20px;
-	height: 50px;
+	height: 48px;
 	color: #fff;
+	padding: 8px;
 	text-align: center;
 	line-height: 45px;
 }
 
-.ul {
+.items {
 	position: relative;
 	background-color: rgba(245, 245, 245, 0.911);
-	min-height: 400px;
-	overflow: hidden;
+	/* 안에 리스트 항목 올라가는 section에만 height 주면 안쪽으로 들어감 */
+	height: 500px;
+	/* 내용 넘치면 스크롤 */
+	overflow-y: auto;
 }
 
-.ul li {
+.item {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 6px 18px;
+	padding: 8px 32px;
 	background: transparent;
 }
 
-input {
-	position: absolute;
-	bottom: 50px;
-	width: 325px;
-	height: 30px;
-	padding: 4px 12px;
+.item__delete {
 	font-size: 16px;
+	transition: all 300ms ease-in;
+}
+
+.item__delete:hover {
+	color: red;
+	transform: scale(1.1);
+}
+
+.item__divider {
+	width: 90%;
+	height: 2px;
+	background-color: lightgray;
+	margin: auto;
 }
 
 .footer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-bottom-left-radius: 16px;
-	border-bottom-right-radius: 16px;
+	/* border-bottom-left-radius: 16px;
+	border-bottom-right-radius: 16px; */
+	border-radius: 0 0 20px 20px;
 	background-image: linear-gradient(130deg, #fbc2eb 0%, #a6c1ee 100%);
 	margin: auto;
 	height: 50px;
 }
 
-.addBtn {
+.footer__input {
+	position: absolute;
+	bottom: 50px;
+	width: 100%;
+	height: 32px;
+	padding: 0 16px;
+	font-size: 24px;
+}
+
+.footer__button {
 	width: 40px;
 	height: 40px;
 	color: #fff;
 	background-color: #000;
 	border-radius: 50%;
-	transition: all 300ms ease-in-out;
-}
-
-.addBtn i {
-	z-index: 1;
-	transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in;
+	/* button 안의 i는 button에서 크기 조절 */
 	font-size: 28px;
 }
 
-.addBtn:hover {
+.footer__button:hover {
 	transform: scale(1.1);
 }
